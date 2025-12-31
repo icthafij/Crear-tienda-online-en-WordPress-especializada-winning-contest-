@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerFit - Potencia Tu Rendimiento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- STYLE.CSS START --- */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --text-white: #ffffff;
+            --text-gray: #a1a1a1;
+            --accent-lime: #ccff00; /* The winning Neon Lime color */
+            --accent-hover: #b3e600;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-dark); color: var(--text-white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* HEADER */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-family: 'Teko', sans-serif; font-size: 32px; font-weight: 700; color: var(--accent-lime); letter-spacing: 1px; text-transform: uppercase; }
+        .logo span { color: white; }
+        
+        nav ul { display: flex; gap: 30px; }
+        nav a { font-size: 14px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+        nav a:hover { color: var(--accent-lime); }
+        
+        .header-actions { display: flex; gap: 20px; align-items: center; }
+        .cart-icon { position: relative; font-size: 18px; cursor: pointer; }
+        .cart-badge { position: absolute; top: -8px; right: -8px; background: var(--accent-lime); color: black; font-size: 10px; font-weight: bold; padding: 2px 5px; border-radius: 50%; }
+
+        /* HERO SECTION - 5 Star Style */
+        .hero {
+            position: relative;
+            height: 90vh;
+            background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center top;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+        }
+        .hero-content { max-width: 650px; position: relative; z-index: 2; }
+        .hero-tag { display: inline-block; background: rgba(204, 255, 0, 0.1); color: var(--accent-lime); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; border: 1px solid var(--accent-lime); }
+        .hero h1 { font-family: 'Teko', sans-serif; font-size: 5rem; line-height: 0.9; text-transform: uppercase; margin-bottom: 20px; }
+        .hero h1 span { color: var(--accent-lime); }
+        .hero p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 40px; max-width: 500px; }
+        
+        .hero-btns { display: flex; gap: 20px; }
+        .btn-primary { background: var(--accent-lime); color: black; padding: 15px 35px; font-weight: 800; text-transform: uppercase; border-radius: 4px; font-size: 14px; border: none; cursor: pointer; letter-spacing: 1px; }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); padding: 13px 35px; font-weight: 700; text-transform: uppercase; border-radius: 4px; font-size: 14px; cursor: pointer; letter-spacing: 1px; }
+        .btn-outline:hover { border-color: var(--accent-lime); color: var(--accent-lime); }
+
+        /* TRUST BADGES STRIP */
+        .trust-strip { background: #111; padding: 20px 5%; display: flex; justify-content: space-around; border-bottom: 1px solid #222; flex-wrap: wrap; gap: 20px; }
+        .trust-item { display: flex; align-items: center; gap: 10px; color: var(--text-gray); font-size: 13px; font-weight: 600; text-transform: uppercase; }
+        .trust-item i { color: var(--accent-lime); font-size: 18px; }
+
+        /* CATEGORIES */
+        .section-header { text-align: center; margin: 80px 0 50px; }
+        .section-header h2 { font-family: 'Teko', sans-serif; font-size: 3.5rem; text-transform: uppercase; font-weight: 600; }
+        .section-header h2 span { color: var(--accent-lime); }
+        .section-header p { color: var(--text-gray); margin-top: 10px; }
+
+        .categories { padding: 0 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 80px; }
+        .cat-card { height: 350px; position: relative; border-radius: 8px; overflow: hidden; group: cursor: pointer; }
+        .cat-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .cat-card:hover img { transform: scale(1.1); }
+        .cat-overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; background: linear-gradient(to top, black, transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; }
+        .cat-overlay h3 { font-family: 'Teko', sans-serif; font-size: 2.5rem; text-transform: uppercase; line-height: 1; margin-bottom: 5px; }
+        .cat-overlay a { color: var(--accent-lime); font-size: 12px; font-weight: bold; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
+
+        /* PRODUCTS GRID */
+        .products { padding: 0 5% 80px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        
+        .product-card { background: var(--bg-card); border-radius: 8px; overflow: hidden; position: relative; transition: 0.3s; border: 1px solid transparent; }
+        .product-card:hover { border-color: var(--accent-lime); transform: translateY(-5px); }
+        .product-badge { position: absolute; top: 15px; left: 15px; background: var(--accent-lime); color: black; font-weight: 800; font-size: 10px; padding: 4px 10px; text-transform: uppercase; border-radius: 2px; z-index: 10; }
+        
+        .prod-img-box { height: 250px; background: #1a1a1a; padding: 20px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .prod-img-box img { max-height: 100%; width: auto; mix-blend-mode: normal; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); transition: 0.3s; }
+        .product-card:hover .prod-img-box img { transform: scale(1.05); }
+        
+        .prod-details { padding: 20px; }
+        .prod-cat { color: var(--text-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: block; }
+        .prod-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
+        .prod-rating { color: #FFD700; font-size: 12px; margin-bottom: 10px; }
+        .prod-price { font-size: 20px; font-weight: 800; color: white; display: block; margin-bottom: 15px; }
+        
+        .add-to-cart { width: 100%; background: var(--accent-lime); border: none; padding: 12px; font-weight: 800; text-transform: uppercase; font-size: 13px; cursor: pointer; color: black; letter-spacing: 1px; transition: 0.3s; }
+        .add-to-cart:hover { background: white; }
+
+        /* FEATURES / WHY CHOOSE US */
+        .features { background: #111; padding: 80px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center; }
+        .feat-icon { width: 60px; height: 60px; border: 2px solid var(--accent-lime); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--accent-lime); font-size: 24px; }
+        .features h4 { text-transform: uppercase; margin-bottom: 10px; font-size: 16px; }
+        .features p { color: var(--text-gray); font-size: 13px; line-height: 1.5; }
+
+        /* NEWSLETTER - 10% OFF */
+        .newsletter { padding: 100px 5%; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop'); background-size: cover; background-position: center; text-align: center; }
+        .newsletter h2 { font-family: 'Teko', sans-serif; font-size: 4rem; text-transform: uppercase; margin-bottom: 10px; line-height: 1; }
+        .newsletter h2 span { color: var(--accent-lime); }
+        .newsletter p { margin-bottom: 30px; font-size: 1.2rem; }
+        .news-form { display: flex; justify-content: center; gap: 10px; max-width: 500px; margin: 0 auto; flex-wrap: wrap; }
+        .news-form input { padding: 15px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; flex: 1; min-width: 250px; outline: none; }
+        .news-form button { background: var(--accent-lime); border: none; padding: 15px 40px; font-weight: 800; text-transform: uppercase; cursor: pointer; color: black; }
+
+        /* FOOTER */
+        footer { background: #050505; border-top: 1px solid #222; padding: 60px 5% 20px; font-size: 14px; color: var(--text-gray); }
+        .footer-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: white; text-transform: uppercase; margin-bottom: 25px; font-weight: 700; font-size: 16px; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a:hover { color: var(--accent-lime); padding-left: 5px; }
+        .socials { display: flex; gap: 15px; margin-top: 20px; }
+        .socials a { width: 35px; height: 35px; background: #222; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+        .socials a:hover { background: var(--accent-lime); color: black; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #222; font-size: 12px; }
+
+        /* MOBILE MENU */
+        .menu-toggle { display: none; font-size: 24px; cursor: pointer; color: white; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            nav { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: #0a0a0a; padding: 20px; border-bottom: 1px solid #333; }
+            nav.active { display: block; }
+            nav ul { flex-direction: column; gap: 20px; }
+            .menu-toggle { display: block; }
+            .hero-btns { flex-direction: column; width: 100%; }
+            .btn-primary, .btn-outline { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">POWER<span>FIT</span>.</div>
+        <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+        <nav id="navbar">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Categorías</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <i class="fas fa-search"></i>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-badge">2</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">Nueva Colección 2024</span>
+            <h1>Potencia Tu <br><span>Rendimiento</span></h1>
+            <p>Suplementos de grado profesional y equipamiento diseñado para atletas que no aceptan límites. Calidad premium garantizada.</p>
+            <div class="hero-btns">
+                <button class="btn-primary">Ver Productos <i class="fas fa-arrow-right" style="margin-left:8px;"></i></button>
+                <button class="btn-outline">Descubrir Más</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="trust-strip">
+        <div class="trust-item"><i class="fas fa-truck-fast"></i> Envío Gratis > 50€</div>
+        <div class="trust-item"><i class="fas fa-shield-alt"></i> Pago 100% Seguro</div>
+        <div class="trust-item"><i class="fas fa-star"></i> 4.9/5 Rating</div>
+        <div class="trust-item"><i class="fas fa-medal"></i> Calidad Premium</div>
+    </div>
+
+    <section class="categories">
+        <div class="section-header">
+            <h2>Nuestras <span>Categorías</span></h2>
+            <p>Todo lo que necesitas para alcanzar tus objetivos fitness</p>
+        </div>
+        <div class="categories-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=800" alt="Nutrición">
+                <div class="cat-overlay">
+                    <h3>Nutrición</h3>
+                    <a href="#">Explorar <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800" alt="Suplementos">
+                <div class="cat-overlay">
+                    <h3>Suplementos</h3>
+                    <a href="#">Explorar <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="cat-card">
+                <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=800" alt="Accesorios">
+                <div class="cat-overlay">
+                    <h3>Accesorios</h3>
+                    <a href="#">Explorar <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products">
+        <div class="section-header">
+            <h2>Productos <span>Destacados</span></h2>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <span class="product-badge">Top Ventas</span>
+                <div class="prod-img-box">
+                    <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=600" alt="Whey Protein">
+                </div>
+                <div class="prod-details">
+                    <span class="prod-cat">Proteína</span>
+                    <h3 class="prod-title">Whey Protein Isolate Gold</h3>
+                    <div class="prod-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (120)</div>
+                    <span class="prod-price">49.99€</span>
+                </div>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+
+            <div class="product-card">
+                <span class="product-badge" style="background:white; color:black;">Nuevo</span>
+                <div class="prod-img-box">
+                    <img src="https://images.unsplash.com/photo-1579722821273-0f6c7d44362f?q=80&w=600" alt="Pre Workout">
+                </div>
+                <div class="prod-details">
+                    <span class="prod-cat">Energía</span>
+                    <h3 class="prod-title">Pre-Workout Storm Explosive</h3>
+                    <div class="prod-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> (85)</div>
+                    <span class="prod-price">34.50€</span>
+                </div>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+
+            <div class="product-card">
+                <div class="prod-img-box">
+                    <img src="https://images.unsplash.com/photo-1623874514711-0f321325f318?q=80&w=600" alt="BCAA">
+                </div>
+                <div class="prod-details">
+                    <span class="prod-cat">Recuperación</span>
+                    <h3 class="prod-title">BCAA Amino Recovery 4:1:1</h3>
+                    <div class="prod-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (210)</div>
+                    <span class="prod-price">22.90€</span>
+                </div>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+
+            <div class="product-card">
+                <span class="product-badge" style="background:#ff3b30; color:white;">Oferta</span>
+                <div class="prod-img-box">
+                    <img src="https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?q=80&w=600" alt="Mancuernas">
+                </div>
+                <div class="prod-details">
+                    <span class="prod-cat">Equipamiento</span>
+                    <h3 class="prod-title">Set Mancuernas Hex 15kg</h3>
+                    <div class="prod-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (45)</div>
+                    <span class="prod-price">45.00€</span>
+                </div>
+                <button class="add-to-cart">Añadir al Carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-item">
+            <div class="feat-icon"><i class="fas fa-shipping-fast"></i></div>
+            <h4>Envío Rápido</h4>
+            <p>Entrega en 24h en península</p>
+        </div>
+        <div class="feature-item">
+            <div class="feat-icon"><i class="fas fa-undo"></i></div>
+            <h4>Devolución Fácil</h4>
+            <p>30 días para devoluciones</p>
+        </div>
+        <div class="feature-item">
+            <div class="feat-icon"><i class="fas fa-headset"></i></div>
+            <h4>Soporte Experto</h4>
+            <p>Asesoramiento nutricional gratis</p>
+        </div>
+        <div class="feature-item">
+            <div class="feat-icon"><i class="fas fa-lock"></i></div>
+            <h4>Pago Seguro</h4>
+            <p>Transacciones 100% encriptadas</p>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h2>Obtén un <span>10% OFF</span></h2>
+        <p>Suscríbete a nuestra newsletter y recibe las mejores ofertas fitness.</p>
+        <form class="news-form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+            <input type="email" placeholder="Tu correo electrónico">
+            <button type="submit">Suscribirse</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-col">
+                <div class="logo">POWER<span>FIT</span>.</div>
+                <p style="margin-top:15px; line-height:1.6;">Líderes en nutrición deportiva y equipamiento de alto rendimiento en Europa.</p>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Nuestros Atletas</a></li>
+                    <li><a href="#">Blog Fitness</a></li>
+                    <li><a href="#">Trabaja con Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Envíos y Entregas</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 PowerFit Europe. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('navbar');
+            nav.classList.toggle('active');
+        }
+
+        // Add to cart animation simple
+        const buttons = document.querySelectorAll('.add-to-cart');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const originalText = this.innerText;
+                this.style.backgroundColor = 'white';
+                this.style.color = 'black';
+                this.innerText = '¡Añadido!';
+                
+                setTimeout(() => {
+                    this.style.backgroundColor = '';
+                    this.style.color = '';
+                    this.innerText = originalText;
+                    // Update cart count visually
+                    const badge = document.querySelector('.cart-badge');
+                    badge.innerText = parseInt(badge.innerText) + 1;
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
